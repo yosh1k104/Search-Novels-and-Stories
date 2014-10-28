@@ -1,0 +1,42 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Books</li>
+<li>Back</li>
+<li><%= link_to 'New Book', new_book_path %></li>
+<li><%= link_to 'Search for books', "/t11342yk/Search-Novels-and-Stories/books/search" %></li>
+<% end %>
+
+<h1>Listing your books</h1>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Category</th>
+    <th>Impression</th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+  <% if book.user_id == current_user.id then %>
+    <tr>
+      <% if false %>
+        <td class="span1"><%= current_user.id %></td>
+        <td class="span1"><%= book.user_id %></td>
+      <% end %>
+      <td class="span3"><%= book.title %></td>
+      <td class="span3"><%= book.author %></td>
+      <td class="span3"><%= book.category %></td>
+      <td class="span5"><%= book.impression %></td>
+      <td class="span3">
+        <%= link_to 'Show', book, :class=>'btn btn-mini' %>
+        <%= link_to 'Edit', edit_book_path(book), :class=>'btn btn-mini' %>
+        <%= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class=>'btn btn-danger btn-mini' %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Book', new_book_path, :class=>'btn btn-primary' %>

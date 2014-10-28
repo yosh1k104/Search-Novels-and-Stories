@@ -1,0 +1,69 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Books</li>
+<li>Back</li>
+<li><%= link_to 'Listing books', books_path %></li>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @book.title %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @book.author %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @book.category %>
+</p>
+
+<p>
+  <b>Impression:</b>
+  <%= @book.impression %>
+</p>
+
+<br />
+<br />
+
+<h4>Show Comments</h4>
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Comment</th>
+  </tr>
+<% @book.comments.each do |comment| %>
+  <tr>
+    <td class="span3"><%= comment.commenter %></td>
+    <td class="span5"><%= comment.body %></td>
+    <% if current_user.name == comment.commenter then %>
+      <td class="span3"><%= link_to 'Destroy', [comment.book, comment],
+                 :confirm => 'Are you sure?',
+                 :method => :delete, :class=>'btn btn-danger btn-mini' %></td>
+      <% end %>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <%= image_tag picture_book_path(@book), :align => 'right', :height => '64' %>
+</p>
+
+<h4>Comment</h4>
+<%= form_for([@book, @book.comments.build]) do |f| %>
+  <%= f.hidden_field :commenter, :value => current_user.name %>
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br />
+
+<%= link_to  'Back', books_path, :class=>'btn btn-inverse' %>
+

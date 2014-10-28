@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Books</li>
+<li>Back</li>
+<li><%= link_to 'Listing books', books_path %></li>
+<% end %>
+
+<h1>Editing book</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @book, :class=>'btn btn-primary' %> |
+<%= link_to 'Back', books_path, :class=>'btn btn-inverse' %>

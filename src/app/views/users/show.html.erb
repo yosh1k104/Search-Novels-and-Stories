@@ -1,0 +1,25 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Users</li>
+<li>Back</li>
+<li><%= link_to 'Listing users', users_path %></li>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<% if false %>
+<p>
+  <b>ID:</b>
+  <%= @user.id %>
+</p>
+<% end %>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+
+<% if false %>
+<%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-primary' %> |
+<% end %>
+<%= link_to  'Back', users_path, :class=>'btn btn-inverse' %>

@@ -1,0 +1,38 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Friends</li>
+<% end %>
+
+<h1>Listing friends</h1>
+
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @friends.each do |friend| %>
+  <% if friend.from_user_id == current_user.id then %>
+    <% @users.each do |user| %>
+      <% if friend.to_user_id == user.id%>
+        <tr>
+          <% if false %>>
+            <td class="span1"><%= friend.from_user_id %></td>
+            <td class="span1"><%= friend.to_user_id %></td>
+          <% end %>
+          <td class="span1"><%= user.name %></td>
+          <td class="span3">
+            <%= link_to 'Show', friend, :class=>'btn btn-mini' %>
+            <%= link_to 'Destroy', friend, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class=>'btn btn-danger btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+

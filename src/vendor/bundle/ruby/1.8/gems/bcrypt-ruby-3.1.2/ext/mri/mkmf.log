@@ -1,0 +1,11 @@
+have_header: checking for ruby/util.h... -------------------- no
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I.    -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+conftest.c:1:23: error: ruby/util.h: そのようなファイルやディレクトリはありません
+checked program was:
+/* begin */
+1: #include <ruby/util.h>
+/* end */
+
+--------------------
+

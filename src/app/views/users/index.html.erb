@@ -1,0 +1,58 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Users</li>
+<li><%= current_user.name %></li>
+<li><%= link_to 'Edit User', "/t11342yk/Search-Novels-and-Stories/users/edit" %></li>
+<% end %>
+
+<h1>Listing users</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <% if user.id != current_user.id then %>
+    <tr>
+      <% if false%>
+        <td class="span1"><%= user.id %></td>
+      <% end %>
+      <td class="span3"><%= user.name %></td>
+  
+      <td class="span3">
+        <%= form_for(@friend) do |f| %>
+          <% if @friend.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+        
+              <ul>
+              <% @friend.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+        
+          <%= f.hidden_field :from_user_id, :value => current_user.id %>
+          <%= f.hidden_field :to_user_id, :value => user.id %>
+        
+          <div class="actions">
+            <%= f.submit("Add Friend", :class=>'btn btn-primary btn-mini') %>
+          </div>
+        <% end %>
+
+        <% if false %>
+        <%= link_to 'Show', user, :class=>'btn btn-mini' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+

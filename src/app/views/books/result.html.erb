@@ -1,0 +1,51 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Books</li>
+<li>Back</li>
+<li><%= link_to 'Listing books', "/t11342yk/Search-Novels-and-Stories/books" %></li>
+<li><%= link_to 'Search for books', "/t11342yk/Search-Novels-and-Stories/books/search" %></li>
+<% end %>
+
+<h1>Search Results</h1>
+
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Category</th>
+    <th>Impression</th>
+  </tr>
+
+<% @books.each do |book| %>
+  <% if book.user_id != current_user.id then %>
+    <% @users.each do |user| %>
+      <% if book.user_id == user.id then %>
+        <tr>
+          <% if false%>
+            <td class="span1"><%= current_user.id %></td>
+            <td class="span1"><%= book.user_id %></td>
+          <% end %>
+          <td class="span1"><%= user.name %></td>
+          <td class="span3"><%= book.title %></td>
+          <td class="span3"><%= book.author %></td>
+          <td class="span3"><%= book.category %></td>
+          <% @friends.each do |friend| %>
+            <% if false %>
+              <td class="span1"><%= friend.from_user_id %></td>
+              <td class="span1"><%= friend.to_user_id %></td>
+            <% end %>
+            <% if current_user.id == friend.from_user_id && user.id == friend.to_user_id then %>
+              <td class="span10"><%= book.impression %></td>
+              <td class="span3">
+                <%= link_to 'Show', book, :class=>'btn btn-mini' %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+</table>
+
+<br />

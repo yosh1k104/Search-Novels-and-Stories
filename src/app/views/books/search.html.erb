@@ -1,0 +1,28 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Books</li>
+<li>Back</li>
+<li><%= link_to 'Listing books', books_path %></li>
+<% end %>
+
+<h1>Search for books</h1>
+
+<%= form_tag do %>
+  <div class="field">
+    <%= label_tag :title, 'Title' %>
+    <%= select_tag :title, options_from_collection_for_select(Book.select("title").uniq, :title, :title), :include_blank => true %>
+  </div>
+  
+  <div class="field">
+    <%= label_tag :author, 'Author' %>
+    <%= select_tag :author, options_from_collection_for_select(Book.select("author").uniq, :author, :author), :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :category, 'Category' %>
+    <%= select_tag :category, options_from_collection_for_select(Book.select("category").uniq, :category, :category), :include_blank => true %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Search' %>
+  </div>
+<% end %>

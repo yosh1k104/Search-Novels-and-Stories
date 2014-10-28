@@ -1,0 +1,59 @@
+<% content_for :sidebar do %>
+<li class="nav-header">Friends</li>
+<li>Back</li>
+<li><%= link_to 'Listing users', "/t11342yk/Search-Novels-and-Stories/users" %></li>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<% if false %>
+<p>
+  <b>From user:</b>
+  <%= @friend.from_user_id %>
+</p>
+
+<p>
+  <b>To user:</b>
+  <%= @friend.to_user_id %>
+</p>
+<% end %>
+
+
+<% if false %>
+<%= link_to 'Edit', edit_friend_path(@friend) %> |
+<% end %>
+
+
+<h1>Listing books</h1>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Category</th>
+    <th>Impression</th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+  <% if book.user_id == @friend.to_user_id then %>
+    <tr>
+      <% if false %>
+        <td class="span1"><%= current_user.id %></td>
+        <td class="span1"><%= book.user_id %></td>
+      <% end %>
+      <td class="span3"><%= book.title %></td>
+      <td class="span3"><%= book.author %></td>
+      <td class="span3"><%= book.category %></td>
+      <td class="span5"><%= book.impression %></td>
+      <td class="span3">
+        <%= link_to 'Show', book, :class=>'btn btn-mini' %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', "/t11342yk/Search-Novels-and-Stories/friends", :class=>'btn btn-inverse' %>
